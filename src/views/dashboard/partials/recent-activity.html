@@ -1,0 +1,91 @@
+<!--
+  Recent Activity Feed Partial
+  Renders the last 10 audit/activity entries with colored action indicators.
+  Used within the dashboard page.
+
+  Expected scope variables (from parent dashboardPage):
+  - loading.activities: boolean — whether activity data is still loading
+  - activities: Array<{
+      id: string,
+      action: string,
+      description: string,
+      user: { id: string, first_name: string, last_name: string },
+      entity_type: string,
+      entity_id: string,
+      created_at: string
+    }> — recent activity items from API
+  - getActivityColor(action): string — returns Tailwind CSS classes for action color
+  - getActivityUser(activity): string — returns user full name
+  - getActivityTime(isoString): string — returns relative time expression
+-->
+<div class="rounded-lg bg-white p-5 shadow-sm dark:bg-gray-800">
+  <!-- Header with View All link -->
+  <div class="mb-4 flex items-center justify-between">
+    <h3
+      class="text-lg font-semibold text-gray-900 dark:text-white"
+      x-t="'dashboard:recent_activity.title'"
+    ></h3>
+    <a
+      href="/admin/logs"
+      class="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+      x-t="'dashboard:recent_activity.view_all'"
+    ></a>
+  </div>
+
+  <!-- Loading skeleton -->
+  <template x-if="loading.activities">
+    <div class="space-y-4">
+      <template x-for="i in 5" :key="i">
+        <div class="flex items-start gap-3">
+          <div class="h-8 w-8 flex-shrink-0 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700"></div>
+          <div class="flex-1 space-y-2">
+            <div class="h-4 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
+            <div class="h-3 w-1/2 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+
+  <!-- Activity list (loaded state) -->
+  <template x-if="!loading.activities">
+    <div>
+      <!-- Empty state -->
+      <template x-if="activities.length === 0">
+        <p
+          class="py-8 text-center text-sm text-gray-500 dark:text-gray-400"
+          x-t="'dashboard:recent_activity.empty'"
+        ></p>
+      </template>
+
+      <!-- Activity entries -->
+      <template x-if="activities.length > 0">
+        <div class="divide-y divide-gray-100 dark:divide-gray-700">
+          <template x-for="activity in activities" :key="activity.id">
+            <div class="flex items-start gap-3 py-3 first:pt-0 last:pb-0">
+              <!-- Action color indicator (colored circle with dot) -->
+              <div
+                class="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full"
+                :class="getActivityColor(activity.action)"
+              >
+                <div class="h-2.5 w-2.5 rounded-full bg-current"></div>
+              </div>
+              <!-- Activity content -->
+              <div class="min-w-0 flex-1">
+                <p
+                  class="text-sm text-gray-900 dark:text-gray-100"
+                  x-text="activity.description"
+                ></p>
+                <div class="mt-1 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                  <span x-text="getActivityUser(activity)"></span>
+                  <span>&middot;</span>
+                  <span x-text="getActivityTime(activity.created_at)"></span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+  </template>
+</div>
