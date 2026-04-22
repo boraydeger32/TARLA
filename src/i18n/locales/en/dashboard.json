@@ -1,0 +1,21 @@
+{
+  "title": "Dashboard",
+  "stats": {
+    "active_listings": "Active Listings",
+    "pending_reviews": "Pending Reviews",
+    "total_users": "Total Users",
+    "monthly_revenue": "Monthly Revenue",
+    "no_change": "No change"
+  },
+  "charts": {
+    "listings_over_time": "Listings Over Time",
+    "category_distribution": "Category Distribution",
+    "revenue_breakdown": "Revenue Breakdown",
+    "user_registrations": "User Registrations"
+  },
+  "recent_activity": {
+    "title": "Recent Activity",
+    "view_all": "View all",
+    "empty": "No activity to show."
+  }
+}

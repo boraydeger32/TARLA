@@ -1,0 +1,21 @@
+{
+  "title": "Kontrol Paneli",
+  "stats": {
+    "active_listings": "Aktif İlanlar",
+    "pending_reviews": "Bekleyen İncelemeler",
+    "total_users": "Toplam Kullanıcı",
+    "monthly_revenue": "Aylık Gelir",
+    "no_change": "Değişim yok"
+  },
+  "charts": {
+    "listings_over_time": "İlan Sayısı (Zamanla)",
+    "category_distribution": "Kategori Dağılımı",
+    "revenue_breakdown": "Gelir Dağılımı",
+    "user_registrations": "Kullanıcı Kayıtları"
+  },
+  "recent_activity": {
+    "title": "Son Aktiviteler",
+    "view_all": "Tümünü Gör",
+    "empty": "Gösterilecek aktivite yok."
+  }
+}

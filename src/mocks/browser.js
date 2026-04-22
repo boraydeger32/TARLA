@@ -13,6 +13,7 @@
 import { setupWorker } from 'msw/browser';
 
 import { authHandlers } from './handlers/auth.js';
+import { dashboardHandlers } from './handlers/dashboard.js';
 import { listingsHandlers } from './handlers/listings.js';
 import { usersHandlers } from './handlers/users.js';
 import { categoriesHandlers } from './handlers/categories.js';
@@ -33,6 +34,7 @@ import { logsHandlers } from './handlers/logs.js';
  */
 const handlers = [
   ...authHandlers,
+  ...dashboardHandlers,
   ...listingsHandlers,
   ...usersHandlers,
   ...categoriesHandlers,
